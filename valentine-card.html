@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Will you be my Valentine?</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: #fff;
+    color: #1f1b2d;
+    position: relative;
+  }
+
+  .card {
+    text-align: center;
+    padding: 2.5rem;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .card > img {
+    width: min(260px, 70vw);
+    height: auto;
+    display: block;
+    border-radius: 16px;
+  }
+
+  h1 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(2.4rem, 4vw, 3.25rem);
+  }
+
+  .hearts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hearts span {
+    position: absolute;
+    color: rgba(255, 111, 177, 0.6);
+    font-size: 1.75rem;
+    animation: float linear infinite;
+  }
+
+  @keyframes float {
+    from {
+      transform: translateY(20vh) scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(-45vh) scale(1.2);
+      opacity: 1;
+    }
+  }
+
+  .buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    border: none;
+    border-radius: 999px;
+    padding: 0.85rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .btn:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.8);
+  }
+
+  #yes {
+    background: linear-gradient(135deg, #ff9fcf, #ff4d6d);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.5);
+    z-index: 2;
+  }
+
+  #no {
+    background: #16121f;
+    color: #f7c5d6;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="card" role="main">
+    <div class="hearts" aria-hidden="true">
+      <span style="left:10%; animation-duration: 14s;">♥</span>
+      <span style="left:25%; animation-duration: 10s; font-size:2rem;">♥</span>
+      <span style="left:60%; animation-duration: 12s;">♥</span>
+      <span style="left:80%; animation-duration: 16s; font-size:1.4rem;">♥</span>
+      <span style="left:45%; animation-duration: 13s;">♥</span>
+    </div>
+    <img src="images/Screenshot 2026-02-04 102058.png" alt="Valentine photo" />
+    <h1>Will you be my Valentine?</h1>
+    <p>Click yes to make my heart skip a beat.</p>
+    <div class="buttons">
+      <button id="yes" class="btn">Yes</button>
+      <button id="no" class="btn">No</button>
+    </div>
+  </div>
+  <script>
+    const noBtn = document.querySelector('#no');
+    const yesBtn = document.querySelector('#yes');
+    let shakeCount = 0;
+    let noClickCount = 0;
+    const shakeScaleStep = 0.12;
+    const noScaleMultiplier = 1.3;
+
+    function updateYesScale() {
+      const baseScale = 1 + shakeCount * shakeScaleStep;
+      const scale = baseScale * Math.pow(noScaleMultiplier, noClickCount);
+      yesBtn.style.transform = `scale(${scale})`;
+    }
+
+    noBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      noBtn.textContent = 'Try Again';
+      noClickCount += 1;
+      updateYesScale();
+    });
+
+    yesBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      shakeCount += 2;
+      updateYesScale();
+      setTimeout(() => {
+        window.location.href = 'celebration.html';
+      }, 350);
+    });
+  </script>
+</body>
+</html>

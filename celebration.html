@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yay!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: #1f1b2d;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .celebration-card {
+      text-align: center;
+      padding: 2.5rem;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    .celebration-card img {
+      width: min(260px, 70vw);
+      height: auto;
+      border-radius: 18px;
+      display: block;
+      margin: 1rem auto 0;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .celebration-card h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(2.6rem, 4vw, 3.2rem);
+    }
+
+    .celebration-card p {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .confetti-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 14px;
+      border-radius: 50%;
+      opacity: 0.95;
+      animation: confetti-fall linear forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translate3d(0, -5vh, 0) rotateZ(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(var(--x), 110vh, 0) rotateZ(720deg);
+        opacity: 0.4;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="celebration-card">
+    <h1>BOOM! ❤️🎉</h1>
+    <p>My favorite person is officially mine ❤️💕</p>
+    <img src="images/zTkZGdAmRbuW1hFVCw.gif" style="width: 300px;" />
+  </div>
+  <div class="confetti-container" aria-hidden="true"></div>
+  <script>
+    const confettiContainer = document.querySelector('.confetti-container');
+    const confettiColors = ['#ff6fb1', '#ff4d6d', '#ffd6a5', '#f7c5d6', '#ffd8e0'];
+
+    const navEntries = performance.getEntriesByType?.('navigation') || [];
+    const navType = navEntries[0]?.type || performance?.navigation?.type;
+    if (navType === 'reload' || navType === 1) {
+      window.location.href = 'valentine-card.html';
+    }
+
+    function createConfettiPiece() {
+      const piece = document.createElement('span');
+      piece.className = 'confetti-piece';
+      const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      piece.style.background = color;
+      piece.style.left = `${Math.random() * 100}%`;
+      const xOffset = -120 + Math.random() * 240;
+      piece.style.setProperty('--x', `${xOffset}px`);
+      piece.style.animationDuration = `${1.4 + Math.random() * 0.8}s`;
+      piece.addEventListener('animationend', () => piece.remove());
+      return piece;
+    }
+
+    function launchConfetti(amount = 60) {
+      for (let i = 0; i < amount; i += 1) {
+        const piece = createConfettiPiece();
+        confettiContainer.appendChild(piece);
+      }
+    }
+
+    launchConfetti(80);
+    setInterval(() => launchConfetti(20), 700);
+
+  </script>
+</body>
+</html>
