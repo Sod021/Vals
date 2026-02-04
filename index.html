@@ -28,28 +28,14 @@
  display: flex;
 }
 
-h1 {
- color: #D6336C;
- font-size: 2rem; /* bigger heading */
- margin-bottom: 10px;
-}
 
-p {
- color: #D6336C;
- font-size: 1.2rem; /* bigger paragraph */
- margin-bottom: 20px;
-}
 
-button {
-      font-size: 18px;
-      padding: 12px 24px;
-      margin: 10px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background-color: #D6336C;
-      color: white;
-    }
+h1 { color: #D6336C; font-size: clamp(1.2rem, 6vw, 1.7rem); /* scales with screen width */ margin-bottom: 10px; }
+
+p { color: #D6336C; font-size: clamp(0.5rem, 4.5vw, 1.0rem); /* bigger on mobile */ margin-bottom: 20px; }
+
+
+button { font-size: clamp(1.1rem, 4vw, 1.4rem); /* buttons scale too */ padding: 16px 12px; /* larger tap area */ margin: 12px; border: none; border-radius: 8px; cursor: pointer; background-color: #D6336C; color: white; width: 40%; /* wide buttons for thumbs */ max-width: 250px; }
 
 img {
       max-width: 250px;
