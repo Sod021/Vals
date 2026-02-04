@@ -5,15 +5,42 @@
   <title>Valentine for Adwoa</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #FFE6F0;
-      margin: 0;
-    }
-    .screen { display: none; padding-top: 40px; }
-    .active { display: block; }
-    h1, p { color: #D6336C; }
-    button {
+ font-family: 'Arial', sans-serif;
+ background-color: #FFE6F0;
+ margin: 0;
+ min-height: 100vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.screen {
+ display: none;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+ width: 90%;
+ max-width: 500px;
+}
+
+.active {
+ display: flex;
+}
+
+h1 {
+ color: #D6336C;
+ font-size: 2rem; /* bigger heading */
+ margin-bottom: 10px;
+}
+
+p {
+ color: #D6336C;
+ font-size: 1.2rem; /* bigger paragraph */
+ margin-bottom: 20px;
+}
+
+button {
       font-size: 18px;
       padding: 12px 24px;
       margin: 10px;
@@ -23,27 +50,30 @@
       background-color: #D6336C;
       color: white;
     }
-    img {
+
+img {
       max-width: 250px;
       margin: 20px auto;
       display: block;
       border-radius: 12px;
     }
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      border: 2px solid #D6336C;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      display: none;
-      z-index: 1000;
-      width: 85%;
-      max-width: 350px;
-    }
+
+.popup {
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ background: white;
+ border: 2px solid #D6336C;
+ padding: 20px;
+ border-radius: 10px;
+ box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+ display: none;
+ z-index: 1000;
+ width: 90%;
+ max-width: 400px;
+ text-align: center;
+}
   </style>
 </head>
 <body>
