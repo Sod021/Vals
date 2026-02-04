@@ -129,6 +129,8 @@
     const subtitle = document.querySelector('#subtitle');
     let shakeCount = 0;
     let noClickCount = 0;
+    let noLabelStage = 0;
+    const noButtonLabels = ['Not quite yet', 'Almost there', 'One more try?'];
     const shakeScaleStep = 0.12;
     const noScaleMultiplier = 1.3;
 
@@ -140,7 +142,10 @@
 
     noBtn.addEventListener('click', (event) => {
       event.preventDefault();
-      noBtn.textContent = 'Try Again';
+      if (noLabelStage < noButtonLabels.length) {
+        noBtn.textContent = noButtonLabels[noLabelStage];
+        noLabelStage += 1;
+      }
       subtitle.textContent = "I'll keep debugging until you say yes 😢";
       noClickCount += 1;
       updateYesScale();
