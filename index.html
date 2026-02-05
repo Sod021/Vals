@@ -4,92 +4,131 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Valentine for Adwoa</title>
+
   <style>
     body {
- font-family: 'Arial', sans-serif;
- background-color: #FFE6F0;
- margin: 0;
- min-height: 100vh;
- display: flex;
- justify-content: center;
- align-items: center;
- position: relative;
-}
+      font-family: 'Arial', sans-serif;
+      background-color: #FFE6F0;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+    }
 
-.screen {
- display: none;
- flex-direction: column;
- justify-content: center;
- align-items: center;
- text-align: center;
- width: 90%;
- max-width: 500px;
-}
+    .screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+    }
 
-.active {
- display: flex;
-}
+    .active {
+      display: flex;
+    }
 
+    h1 {
+      color: #D6336C;
+      font-size: clamp(1.2rem, 6vw, 1.7rem);
+      margin-bottom: 10px;
+    }
 
+    p {
+      color: #D6336C;
+      font-size: clamp(0.9rem, 4.5vw, 1.05rem);
+      margin-bottom: 16px;
+    }
 
-h1 { color: #D6336C; font-size: clamp(1.2rem, 6vw, 1.7rem); /* scales with screen width */ margin-bottom: 10px; }
-
-p { color: #D6336C; font-size: clamp(0.5rem, 4.5vw, 1.0rem); /* bigger on mobile */ margin-bottom: 20px; }
-
-
-button { font-size: clamp(1.1rem, 4vw, 1.4rem); /* buttons scale too */ padding: 16px 12px; /* larger tap area */ margin: 12px; border: none; border-radius: 8px; cursor: pointer; background-color: #D6336C; color: white; width: 40%; /* wide buttons for thumbs */ max-width: 250px; }
-
-img {
-      max-width: 250px;
-      margin: 20px auto;
-      display: block;
+    img {
+      width: 50%;
+      max-width: 260px;
+      margin: 14px auto;
       border-radius: 12px;
     }
 
-.popup {
- position: fixed;
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
- background: white;
- border: 2px solid #D6336C;
- padding: 20px;
- border-radius: 10px;
- box-shadow: 0 4px 10px rgba(0,0,0,0.3);
- display: none;
- z-index: 1000;
- width: 90%;
- max-width: 400px;
- text-align: center;
-}
+    /* 🔥 BUTTON ROW */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    button {
+      flex: 1;
+      font-size: clamp(1rem, 4.5vw, 1.3rem);
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #D6336C;
+      color: white;
+      max-width: 120px;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 2px solid #D6336C;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 1000;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    @media (max-width: 340px) {
+      .btn-row {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
+
 <body>
+
   <!-- Screen 1 -->
   <div id="screen1" class="screen active">
-    <h1>Mi nkoaa mi dɔ Adwoa ❤️<!--:heart:</h1> -->
+    <h1>Mi nkoaa mi dɔ Adwoa ❤️</h1>
     <p>I want to ask you something?</p>
     <img src="images/Yle9Yz9izeVRyiwavn.gif" alt="Romantic roses">
-    <button onclick="goToScreen('screen2')">I am ready</button>
-    <button onclick="showPopup('You would miss a lot ooo, so please rethink it 💌','screen1')">Nope</button>
+
+    <div class="btn-row">
+      <button onclick="goToScreen('screen2')">I am ready</button>
+      <button onclick="showPopup('You would miss a lot ooo, so please rethink it 💌','screen1')">Nope</button>
+    </div>
   </div>
 
   <!-- Screen 2 -->
   <div id="screen2" class="screen">
     <h1>Awww I knew you would pick this 💕</h1>
     <p>Are you ready!!!</p>
-    <!-- <img src="https://via.placeholder.com/250x150.png?text=Cute+Couple" alt="Cute couple cartoon"> -->
     <img src="images/qFmdpUKAFZ6rMobzzu.gif" alt="Cute couple cartoon">
-    <button onclick="goToScreen('screen3')">Yes</button>
-    <button onclick="showPopup('Are you sureeeeee? Just try 💌','screen2')">No</button>
+
+    <div class="btn-row">
+      <button onclick="goToScreen('screen3')">Yes</button>
+      <button onclick="showPopup('Are you sureeeeee? Just try 💌','screen2')">No</button>
+    </div>
   </div>
 
   <!-- Screen 3 -->
   <div id="screen3" class="screen">
     <h1>Would you be my Valentine? 💌</h1>
     <img src="images/OgY9PFIPQXHyRQ8LIJ.gif" alt="Heart balloons">
-    <button id="yesBtn" onclick="goToScreen('yesScreen')">Yes</button>
-    <button id="noBtn" onclick="openNoPopup()">No</button>
+
+    <div class="btn-row">
+      <button id="yesBtn" onclick="goToScreen('yesScreen')">Yes</button>
+      <button id="noBtn" onclick="openNoPopup()">No</button>
+    </div>
   </div>
 
   <!-- Yes Screen -->
@@ -97,29 +136,29 @@ img {
     <h1>This is why I love you ❤️</h1>
     <p>Thank you soooo much for choosing me!</p>
     <img src="images/GXFDStd2CP1ba.gif" alt="Couple hugging">
-    <button onclick="openLetter()">Click this — for your eyes only 💌</button>
+
+    <div class="btn-row">
+      <button onclick="openLetter()">For your eyes only 💌</button>
+    </div>
   </div>
 
-  <!-- General Popup -->
+  <!-- Popups (unchanged logic) -->
   <div id="popup" class="popup">
     <p id="popupText"></p>
     <button onclick="closePopup()">OK</button>
   </div>
 
-  <!-- Valentine No Popup -->
   <div id="valPopup" class="popup">
     <p id="valPopupText"></p>
     <button id="popupNoBtn" onclick="handleNo()">Still No</button>
   </div>
 
-  <!-- Love Letter Popup -->
   <div id="letterPopup" class="popup">
-    <img src="images/LBMiDWkCw0e53UOcm0.gif" alt="Glowing heart" width="100">
-    <p style="text-align:left; color:#d6336c;">
+    <img src="images/LBMiDWkCw0e53UOcm0.gif" width="10">
+    <p style="text-align:left;color:#D6336C;">
       Look in the mirror and read...<br><br>
-      Dear queen, if you see your reflection imagine a crown on your head — that's how I see you.
-      So simple yet beautiful. I may not be there in person to say this, but you have captured my heart.
-      You can be unstoppable if you focus on your dreams, and I promise to be by your side and help you accomplish greater heights.
+      Dear queen, imagine a crown on your head — that’s how I see you.
+      You’ve captured my heart, and I promise to stand by you as you chase your dreams.
       <br><br><strong>I LOVE YOU.</strong><br><br>
       Regards,<br>Nana
     </p>
@@ -129,6 +168,7 @@ img {
   <script>
     let returnScreen = "screen1";
     let noCount = 0;
+
     const noMessages = [
       "Are you sure? 🤔",
       "I beg wo tsi makoma ❤️",
@@ -136,18 +176,15 @@ img {
       "Check Yes, there is a surprise for you 🎁"
     ];
 
-    function goToScreen(screenId) {
+    function goToScreen(id) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById(screenId).classList.add('active');
-      // Always close popups when switching
-      document.getElementById("popup").style.display = "none";
-      document.getElementById("valPopup").style.display = "none";
-      document.getElementById("letterPopup").style.display = "none";
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.popup').forEach(p => p.style.display = 'none');
     }
 
-    function showPopup(message, screenId) {
-      returnScreen = screenId;
-      document.getElementById("popupText").innerText = message;
+    function showPopup(msg, screen) {
+      returnScreen = screen;
+      document.getElementById("popupText").innerText = msg;
       document.getElementById("popup").style.display = "block";
     }
 
@@ -169,15 +206,14 @@ img {
       if (noCount < noMessages.length - 1) {
         noCount++;
         document.getElementById("valPopupText").innerText = noMessages[noCount];
-        let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-        yesBtn.style.fontSize = (currentSize + 4) + "px";
+        yesBtn.style.fontSize =
+          parseFloat(getComputedStyle(yesBtn).fontSize) + 4 + "px";
       } else {
         popupNoBtn.onmouseover = () => {
-          const x = Math.random() * (document.getElementById("valPopup").offsetWidth - popupNoBtn.offsetWidth);
-          const y = Math.random() * (document.getElementById("valPopup").offsetHeight - popupNoBtn.offsetHeight);
+          const p = document.getElementById("valPopup");
           popupNoBtn.style.position = "absolute";
-          popupNoBtn.style.left = x + "px";
-          popupNoBtn.style.top = y + "px";
+          popupNoBtn.style.left = Math.random() * (p.offsetWidth - popupNoBtn.offsetWidth) + "px";
+          popupNoBtn.style.top = Math.random() * (p.offsetHeight - popupNoBtn.offsetHeight) + "px";
         };
       }
     }
@@ -190,5 +226,6 @@ img {
       document.getElementById("letterPopup").style.display = "none";
     }
   </script>
+
 </body>
 </html>
