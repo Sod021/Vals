@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Valentine for Adwoa</title>
 
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #FFE6F0;
       margin: 0;
       min-height: 100vh;
@@ -49,31 +49,28 @@
       border-radius: 12px;
     }
 
-    /* 🔥 BUTTON ROW */
     .btn-row {
-  display: flex;
-  gap: 12px;
-  width: 100%;
-  max-width: 250px;   /* controls how long the button can be */
-  justify-content: center;
-}
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      max-width: 300px;
+      justify-content: center;
+    }
 
-
+    /* BASE BUTTON */
     button {
-  flex: 1;
-  width: 100%;          /* allow full stretch */
-  font-size: clamp(1rem, 4.5vw, 1.3rem);
-  padding: 14px 18px;   /* more horizontal space */
-  border: none;
-  border-radius: 10px;  /* softer, premium look */
-  cursor: pointer;
-  background-color: #D6336C;
-  color: white;
-  max-width: none;      /* 🔥 removes the boxy limit */
-}
+      font-size: clamp(1rem, 4.5vw, 1.3rem);
+      padding: 14px 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #D6336C;
+      color: white;
+      transition: transform 0.3s ease, width 0.3s ease;
+      width: 130px; /* SAME starting width */
+    }
 
-    
-    
+    /* Popup */
     .popup {
       position: fixed;
       top: 50%;
@@ -82,19 +79,22 @@
       background: white;
       border: 2px solid #D6336C;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       display: none;
       z-index: 1000;
       width: 70%;
-      max-width: 400px;
+      max-width: 380px;
       text-align: center;
     }
 
-    @media (max-width: 340px) {
-      .btn-row {
-        flex-direction: column;
-      }
+    /* Still No button */
+    .no-btn {
+      font-size: 0.9rem;
+      padding: 10px 14px;
+      background-color: #f06595;
+      width: 90px;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -105,11 +105,11 @@
   <div id="screen1" class="screen active">
     <h1>Mi nkoaa mi dɔ Adwoa ❤️</h1>
     <p>I want to ask you something?</p>
-    <img src="images/Yle9Yz9izeVRyiwavn.gif" alt="Romantic roses">
+    <img src="images/Yle9Yz9izeVRyiwavn.gif">
 
     <div class="btn-row">
       <button onclick="goToScreen('screen2')">I am ready</button>
-      <button onclick="showPopup('You would miss a lot ooo, so please rethink it 💌','screen1')">Nope</button>
+      <button onclick="showPopup('You would miss a lot ooo 💌','screen1')">Nope</button>
     </div>
   </div>
 
@@ -117,22 +117,22 @@
   <div id="screen2" class="screen">
     <h1>Awww I knew you would pick this 💕</h1>
     <p>Are you ready!!!</p>
-    <img src="images/qFmdpUKAFZ6rMobzzu.gif" alt="Cute couple cartoon">
+    <img src="images/qFmdpUKAFZ6rMobzzu.gif">
 
     <div class="btn-row">
       <button onclick="goToScreen('screen3')">Yes</button>
-      <button onclick="showPopup('Are you sureeeeee? Just try 💌','screen2')">No</button>
+      <button onclick="showPopup('Are you sureeeeee? 💌','screen2')">No</button>
     </div>
   </div>
 
   <!-- Screen 3 -->
   <div id="screen3" class="screen">
     <h1>Would you be my Valentine? 💌</h1>
-    <img src="images/OgY9PFIPQXHyRQ8LIJ.gif" alt="Heart balloons">
+    <img src="images/OgY9PFIPQXHyRQ8LIJ.gif">
 
     <div class="btn-row">
-      <button id="yesBtn" onclick="goToScreen('yesScreen')">Yes</button>
-      <button id="noBtn" onclick="openNoPopup()">No</button>
+      <button id="mainYesBtn" onclick="goToScreen('yesScreen')">Yes</button>
+      <button onclick="openNoPopup()">No</button>
     </div>
   </div>
 
@@ -140,30 +140,33 @@
   <div id="yesScreen" class="screen">
     <h1>This is why I love you ❤️</h1>
     <p>Thank you soooo much for choosing me!</p>
-    <img src="images/GXFDStd2CP1ba.gif" alt="Couple hugging">
+    <img src="images/GXFDStd2CP1ba.gif">
 
     <div class="btn-row">
       <button onclick="openLetter()">For your eyes only 💌</button>
     </div>
   </div>
 
-  <!-- Popups (unchanged logic) -->
+  <!-- Generic Popup -->
   <div id="popup" class="popup">
     <p id="popupText"></p>
     <button onclick="closePopup()">OK</button>
   </div>
 
+  <!-- Valentine No Popup -->
   <div id="valPopup" class="popup">
     <p id="valPopupText"></p>
-    <button id="popupNoBtn" onclick="handleNo()">Still No</button>
+    <button class="no-btn" onclick="handleNo()">Still No</button>
   </div>
 
+  <!-- Letter Popup -->
   <div id="letterPopup" class="popup">
-    <img src="images/LBMiDWkCw0e53UOcm0.gif" width="10">
+    <img src="images/LBMiDWkCw0e53UOcm0.gif" width="80">
     <p style="text-align:left;color:#D6336C;">
       Look in the mirror and read...<br><br>
       Dear queen, imagine a crown on your head — that’s how I see you.
-      You’ve captured my heart, and I promise to stand by you as you chase your dreams.
+      So simple yet beautiful. I may not be there in person to say this, but you have captured my heart.
+      You can be unstoppable if you focus on your dreams, and I promise to be by your side and help you accomplish greater heights.
       <br><br><strong>I LOVE YOU.</strong><br><br>
       Regards,<br>Nana
     </p>
@@ -173,12 +176,13 @@
   <script>
     let returnScreen = "screen1";
     let noCount = 0;
+    let yesScale = 1;
 
     const noMessages = [
       "Are you sure? 🤔",
       "I beg wo tsi makoma ❤️",
       "Please princess 👑",
-      "Check Yes, there is a surprise for you 🎁"
+      "Check Yes, there is a surprise 🎁"
     ];
 
     function goToScreen(id) {
@@ -200,26 +204,21 @@
 
     function openNoPopup() {
       noCount = 0;
-      document.getElementById("valPopupText").innerText = noMessages[noCount];
+      yesScale = 1;
+      document.getElementById("mainYesBtn").style.transform = "scale(1)";
+      document.getElementById("valPopupText").innerText = noMessages[0];
       document.getElementById("valPopup").style.display = "block";
     }
 
     function handleNo() {
-      const yesBtn = document.getElementById("yesBtn");
-      const popupNoBtn = document.getElementById("popupNoBtn");
+      const yesBtn = document.getElementById("mainYesBtn");
 
       if (noCount < noMessages.length - 1) {
         noCount++;
         document.getElementById("valPopupText").innerText = noMessages[noCount];
-        yesBtn.style.fontSize =
-          parseFloat(getComputedStyle(yesBtn).fontSize) + 4 + "px";
-      } else {
-        popupNoBtn.onmouseover = () => {
-          const p = document.getElementById("valPopup");
-          popupNoBtn.style.position = "absolute";
-          popupNoBtn.style.left = Math.random() * (p.offsetWidth - popupNoBtn.offsetWidth) + "px";
-          popupNoBtn.style.top = Math.random() * (p.offsetHeight - popupNoBtn.offsetHeight) + "px";
-        };
+
+        yesScale += 0.15;
+        yesBtn.style.transform = `scale(${yesScale})`;
       }
     }
 
